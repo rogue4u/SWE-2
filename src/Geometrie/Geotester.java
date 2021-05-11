@@ -17,7 +17,6 @@ public class Geotester {
 		plotter.setRange(-1., 11);
 		plotter.setAutoIncrementColor(false);
 
-
 		Punkt p1 = new Punkt(1, 1);
 		Punkt p2 = new Punkt(6, 5);
 		Punkt p3 = new Punkt(3, 7);
