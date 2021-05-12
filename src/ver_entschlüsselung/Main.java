@@ -3,14 +3,10 @@ package ver_entschlüsselung;
 import jserver.Board;
 import jserver.XSendAdapterEN;
 import javax.swing.*;
-
 import plotter.Graphic;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
 
 public class Main {
 
@@ -28,7 +24,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
         Main main = new Main();
         main.start();
     }
@@ -39,77 +34,86 @@ public class Main {
     }
 
     private void createBoard() {
-
         Board board = xsend.getBoard();
         graphic = board.getGraphic();
 
         board.setSize(800,800);
-        xsend.size(0,0);
+        xsend.size(27,2);
         createGui();
     }
 
     public void createGui (){
-        Box Gui = Box.createVerticalBox();
-        Box Settings = Box.createVerticalBox();
+        Box settings = Box.createVerticalBox();
+        Box gui = Box.createVerticalBox();
 
-        Gui.add(comboBoxSelection);
-        Gui.add(Box.createVerticalStrut(10));
+        settings.add(comboBoxSelection);
+        settings.add(Box.createVerticalStrut(10));
 
         //textAreaTextInput.setMaximumSize( new Dimension(250,0) );
-        Gui.add(textAreaTextInput);
-        Gui.add(Box.createVerticalStrut(10));
+        settings.add(textAreaTextInput);
+        settings.add(Box.createVerticalStrut(10));
+
         //Zeilenumbrüche aktviert + Nur nach ganzen Wörtern
         textAreaTextInput.setLineWrap(true);
         textAreaTextInput.setWrapStyleWord(true);
 
         textFieldKeyInput.setMaximumSize( new Dimension(250, 50));
-        Gui.add(textFieldKeyInput);
-        Gui.add(Box.createVerticalStrut(10));
+        settings.add(textFieldKeyInput);
+        settings.add(Box.createVerticalStrut(10));
 
         //textAreaTextOutput.setMaximumSize( new Dimension(250, 0));
-        Gui.add(textAreaTextOutput);
-        Gui.add(Box.createVerticalStrut(10));
+        settings.add(textAreaTextOutput);
+        settings.add(Box.createVerticalStrut(10));
         //Zeilenumbrüche aktviert + Nur nach ganzen Wörtern
         textAreaTextOutput.setLineWrap(true);
         textAreaTextOutput.setWrapStyleWord(true);
 
-        Gui.add(buttonEncode);
-        Gui.add(buttonDecode);
+        //Buttons an die GUI hinzufügen
+        settings.add(buttonEncode);
+        settings.add(buttonDecode);
 
-        Settings.add(Gui);
-        graphic.addEastComponent(Settings);
-
-
+        gui.add(settings);
+        graphic.addEastComponent(gui);
     }
 
     private void buttonActionListener() {
         buttonEncode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cipherType = comboBoxSelection.getSelectedItem().toString();
-                if (cipherType == "Caesar cipher"){
-                    xsend.size(27,2);
+                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+                    CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                    textAreaTextOutput.setText(caesar.encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
+
                 } else {
-                    xsend.size(27,27);
+                    VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                    textAreaTextOutput.setText(vigenere.encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
                 }
-                System.out.println("Encode Button Funktioniert!");
             }
         });
 
         buttonDecode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cipherType = comboBoxSelection.getSelectedItem().toString();
-                if (cipherType == "Caesar cipher"){
+                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+                    CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                    textAreaTextOutput.setText(caesar.decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
+                } else {
+                    VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                    textAreaTextOutput.setText(vigenere.decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
+                }
+            }
+        });
+
+        //BOS nach BoxSelection anpassen
+        comboBoxSelection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
                     xsend.size(27,2);
                 } else {
                     xsend.size(27,27);
                 }
-                System.out.println("Decode Button Funktioniert!");
             }
         });
     }
-
-
-
 }
