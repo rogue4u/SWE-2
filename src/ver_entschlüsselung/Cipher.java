@@ -1,6 +1,6 @@
 package ver_entschlüsselung;
 
-public class Cipher {
+abstract class Cipher {
 
     private String userInput;
     private String userOutput;
@@ -12,25 +12,22 @@ public class Cipher {
         this.key = key;
     }
 
+    public String getUserInput() {
+        return userInput;
+    }
+    public void setUserInput(String userInput) {
+        this.userInput = userInput;
+    }
     public String getUserOutput() {
         return userOutput;
     }
-
     public void setUserOutput(String userOutput) {
         this.userOutput = userOutput;
     }
-
     public String getKey() {
         return key;
     }
 
-    public String encode (String userInput, String key){
-        System.out.println("Encoded!");
-        return "Test";
-    }
-
-    public String decode (String userInput, String key){
-        System.out.println("Decoded!");
-        return "Test";
-    }
+    abstract String encode (String userInput, String key);
+    abstract String decode (String userInput, String key);
 }
