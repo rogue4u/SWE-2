@@ -3,6 +3,7 @@ package ver_entschlüsselung;
 public class VigenereCipher extends Cipher {
 
     private char[][] table;
+    private int inertialShift;
 
     public VigenereCipher(String userInput, String userOutput, String key) {
         super(userInput, userOutput, key);
@@ -13,6 +14,7 @@ public class VigenereCipher extends Cipher {
         super(userInput, userOutput, key);
         //Fill the table
         table = FillTable(new char[26][26], key, inertialShift);
+        this.inertialShift = inertialShift;
     }
 
     public String Encode (String userInput, String key) {
