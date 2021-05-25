@@ -28,6 +28,6 @@ abstract class Cipher {
         return key;
     }
 
-    abstract String encode (String userInput, String key);
-    abstract String decode (String userInput, String key);
+    abstract String Encode (String userInput, String key);
+    abstract String Decode (String userInput, String key);
 }
