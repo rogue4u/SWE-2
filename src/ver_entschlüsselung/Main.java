@@ -77,42 +77,34 @@ public class Main {
     }
 
     private void buttonActionListener() {
-        buttonEncode.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
-                    CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
-                    textAreaTextOutput.setText(caesar.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
+        buttonEncode.addActionListener(e -> {
+            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+                CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                textAreaTextOutput.setText(caesar.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
 
-                } else {
-                    VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
-                    textAreaTextOutput.setText(vigenere.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
-                }
+            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+                VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                textAreaTextOutput.setText(vigenere.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
             }
         });
 
-        buttonDecode.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
-                    CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
-                    textAreaTextOutput.setText(caesar.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
-                } else {
-                    VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
-                    textAreaTextOutput.setText(vigenere.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
-                }
+        buttonDecode.addActionListener(e -> {
+            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher") {
+                CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                textAreaTextOutput.setText(caesar.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
+            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+                VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                textAreaTextOutput.setText(vigenere.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
             }
         });
 
         //BOS nach BoxSelection anpassen
-        comboBoxSelection.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
-                    xsend.size(27,2);
-                } else {
-                    xsend.size(27,27);
-                }
+        comboBoxSelection.addActionListener(e -> {
+            Logger.Log("Main/comboBoxSelection/actionPerformed", "Changed to " + comboBoxSelection.getSelectedItem().toString());
+            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+                xsend.size(27,2);
+            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+                xsend.size(27,27);
             }
         });
     }
