@@ -7,6 +7,7 @@ import plotter.Graphic;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Main {
 
@@ -22,10 +23,14 @@ public class Main {
     JButton buttonEncode = new JButton("Encode");
     JButton buttonDecode = new JButton("Decode");
 
-
     public static void main(String[] args) {
+        //TODO: OnExit event
         Main main = new Main();
+        Logger.INIT();
         main.start();
+        for (IOException item : Logger.errors) {
+            Logger.Log("Main/Error", item.toString());
+        }
     }
 
     private void start(){
