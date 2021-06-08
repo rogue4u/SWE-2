@@ -13,8 +13,8 @@ public class Helper {
         }
         return letter;
     }
-    public static char calcCurrent(char c, int shift) {
-        return 'a';
+    public static char getCharByIndex(int index) {
+        return (char)(start+index);
     }
     public static void PrintTable(char[][] table) {
         for (char[] items: table) {
@@ -43,5 +43,14 @@ public class Helper {
             result += arr[i];
         }
         return result;
+    }
+    //TODO: Byte shifting functions
+    //returns index of a val in a array, is -1 if not found, basically a find function
+    public static int getIndexOfElement(char[] arr, char val) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == val)
+                return i;
+        }
+        return -1;
     }
 }

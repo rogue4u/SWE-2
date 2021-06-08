@@ -5,26 +5,30 @@ import java.util.Locale;
 public class VigenereCipher extends Cipher {
     public static void main(String[] args) {
         VigenereCipher akey = new VigenereCipher("", "", "akey");
-        Logger.Log("Cipher/Vigenere", akey.Encode("geheimnis", "akey"));
+        String out = akey.Encode("geheimnis", "akey");
+        Logger.Log("Cipher/Vigenere/Encode", out);
+        out = akey.Decode(out, "akey");
+        Logger.Log("Cipher/Vigenere/Decode", out);
     }
 
-    private char[][] table;
-    private char[] ignoreChars = {'ß', 'ö', 'ä', 'ü', '.', ',', ':', ';', '-', '_', '#', '+', '*', ' '};
+    private final char[][] table;
+    private final char[] ignoreChars = {'ß', 'ö', 'ä', 'ü', '.', ',', ':', ';', '-', '_', '#', '+', '*', ' '};
 
     public VigenereCipher(String userInput, String userOutput, String key) {
         super(userInput, userOutput, key);//TODO: IGNORE THIS
         //Fill the table
         table = FillTable(new char[26][26], 0);
     }
-    public VigenereCipher(String userInput, String userOutput, String key, int inertialShift) {
-        super(userInput, userOutput, key);//TODO: IGNORE THIS
-        //Fill the table
-        table = FillTable(new char[26][26], inertialShift);
-    }
+    //TODO: IGNORE THIS
+    /*public VigenereCipher(String userInput, String userOutput, String key, int inertialShift) {
+      *  super(userInput, userOutput, key);
+      *  //Fill the table
+      *  table = FillTable(new char[26][26], inertialShift);
+    }*/
 
-    public String Encode (String userInput, String key) {
+    public String Encode (String input, String key) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Encoded!");
-        char[] _uInput = userInput.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();
         char[] _uKey = key.toCharArray();
         int step = 0;
 
@@ -36,12 +40,21 @@ public class VigenereCipher extends Cipher {
         }
         return Helper.getString(_uInput);
     }
-
-    public String Decode (String userInput, String key) {
+    public String Decode (String input, String key) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Decoded!");
-        String userOutput = userInput + key;
-        return userOutput;
+        //TODO: Vigenere Decode
+        char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uKey = key.toCharArray();
+        int step = 0;
+        for (int i = 0; i < _uInput.length; i++) {
+            if (Helper.Contains(ignoreChars, _uInput[i])) continue;
+            if (step == _uKey.length) step = 0;
+            _uInput[i] = getChar(_uInput[i],_uKey[step++] , true);
+        }
+        return Helper.getString(_uInput);
     }
+
+
 
     //Fill the Vigenere table with chars
     private char[][] FillTable(char[][] table, int inertialShift) {
@@ -64,7 +77,9 @@ public class VigenereCipher extends Cipher {
         if (!reverse) {
             return table[Helper.getIndex(val)][Helper.getIndex(key)];
         } else {
-            return ' ';
+            //TODO: Add reverse char search, is mby working
+            return Helper.getCharByIndex(Helper.getIndexOfElement(table[Helper.getIndex(key)], val));
         }
     }
+
 }
