@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class VigenereCipher extends Cipher {
     public static void main(String[] args) {
-        VigenereCipher akey = new VigenereCipher("", "", "akey");
+        VigenereCipher akey = new VigenereCipher();
         String out = akey.Encode("geheimnis", "akey");
         Logger.Log("Cipher/Vigenere/Encode", out);
         out = akey.Decode(out, "akey");
@@ -14,8 +14,8 @@ public class VigenereCipher extends Cipher {
     private final char[][] table;
     private final char[] ignoreChars = {'ß', 'ö', 'ä', 'ü', '.', ',', ':', ';', '-', '_', '#', '+', '*', ' '};
 
-    public VigenereCipher(String userInput, String userOutput, String key) {
-        super(userInput, userOutput, key);//TODO: IGNORE THIS
+    public VigenereCipher() {
+        super("Vigenere", 1);//TODO: IGNORE THIS
         //Fill the table
         table = FillTable(new char[26][26], 0);
     }

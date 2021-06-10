@@ -2,30 +2,20 @@ package ver_entschlüsselung;
 
 abstract class Cipher {
 
-    private String userInput;
-    private String userOutput;
-    private String key;
+    private String name;
+    private int version;
 
-    public Cipher(String userInput, String userOutput, String key) {
-        this.userInput = userInput;
-        this.userOutput = userOutput;
-        this.key = key;
+    public Cipher(String name, int version) {
+        this.name = name;
+        this.version = version;
     }
 
-    public String getUserInput() {
-        return userInput;
+    public String getName() {
+        return name;
     }
-    public void setUserInput(String userInput) {
-        this.userInput = userInput;
-    }
-    public String getUserOutput() {
-        return userOutput;
-    }
-    public void setUserOutput(String userOutput) {
-        this.userOutput = userOutput;
-    }
-    public String getKey() {
-        return key;
+
+    public int getVersion() {
+        return version;
     }
 
     abstract String Encode (String userInput, String key);

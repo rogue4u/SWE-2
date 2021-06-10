@@ -5,8 +5,8 @@ import java.util.Locale;
 public class CaesarCipher extends Cipher {
 
     //Constructor
-    public CaesarCipher(String userInput, String userOutput, String key) {
-        super(userInput, userOutput, key);
+    public CaesarCipher() {
+        super("CaesarCipher", 1);
     }
 
     //encodes the userInput and returns the Encoded Text

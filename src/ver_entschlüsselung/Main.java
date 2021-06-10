@@ -84,21 +84,21 @@ public class Main {
     private void buttonActionListener() {
         buttonEncode.addActionListener(e -> {
             if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
-                CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                CaesarCipher caesar = new CaesarCipher();
                 textAreaTextOutput.setText(caesar.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
 
             } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
-                VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                VigenereCipher vigenere = new VigenereCipher();
                 textAreaTextOutput.setText(vigenere.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
             }
         });
 
         buttonDecode.addActionListener(e -> {
             if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher") {
-                CaesarCipher caesar = new CaesarCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                CaesarCipher caesar = new CaesarCipher();
                 textAreaTextOutput.setText(caesar.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
             } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
-                VigenereCipher vigenere = new VigenereCipher(textAreaTextInput.getText(), "", textFieldKeyInput.getText());
+                VigenereCipher vigenere = new VigenereCipher();
                 textAreaTextOutput.setText(vigenere.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText()));
             }
         });
