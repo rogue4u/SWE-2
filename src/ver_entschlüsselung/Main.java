@@ -28,7 +28,7 @@ public class Main {
         Main main = new Main();
         Logger.INIT();
         main.start();
-        for (IOException item : Logger.errors) {
+        for (Exception item : Logger.errors) {
             Logger.Log("Main/Error", item.toString());
         }
     }

@@ -3,16 +3,8 @@ package ver_entschlüsselung;
 import java.util.Locale;
 
 public class VigenereCipher extends Cipher {
-    public static void main(String[] args) {
-        VigenereCipher akey = new VigenereCipher();
-        String out = akey.Encode("geheimnis", "akey");
-        Logger.Log("Cipher/Vigenere/Encode", out);
-        out = akey.Decode(out, "akey");
-        Logger.Log("Cipher/Vigenere/Decode", out);
-    }
 
     private final char[][] table;
-    private final char[] ignoreChars = {'ß', 'ö', 'ä', 'ü', '.', ',', ':', ';', '-', '_', '#', '+', '*', ' '};
 
     public VigenereCipher() {
         super("Vigenere", 1);//TODO: IGNORE THIS
@@ -34,7 +26,7 @@ public class VigenereCipher extends Cipher {
 
         for (int i = 0; i < _uInput.length; i++) {
             //ignore some chars
-            if (Helper.Contains(ignoreChars, _uInput[i])) continue;
+            if (Helper.Contains(Helper.specials, _uInput[i])) continue;
             if (step == _uKey.length) step = 0;
             _uInput[i] = getChar(_uInput[i],_uKey[step++] , false);
         }
@@ -47,7 +39,7 @@ public class VigenereCipher extends Cipher {
         char[] _uKey = key.toCharArray();
         int step = 0;
         for (int i = 0; i < _uInput.length; i++) {
-            if (Helper.Contains(ignoreChars, _uInput[i])) continue;
+            if (Helper.Contains(Helper.specials, _uInput[i])) continue;
             if (step == _uKey.length) step = 0;
             _uInput[i] = getChar(_uInput[i],_uKey[step++] , true);
         }

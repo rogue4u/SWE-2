@@ -1,8 +1,11 @@
 package ver_entschlüsselung;
 
-import java.util.Locale;
-
 public class CaesarCipher extends Cipher {
+    public static void main(String[] args) {
+        CaesarCipher cipher = new CaesarCipher();
+        Logger.Log("Cipher/Caeser/test", "" + cipher.Encode("abcde", "18"));
+        Logger.Log("Cipher/Caeser/test", "" + cipher.Decode("stuvw", "18"));
+    }
 
     //Constructor
     public CaesarCipher() {
@@ -11,29 +14,48 @@ public class CaesarCipher extends Cipher {
 
     //encodes the userInput and returns the Encoded Text
     public String Encode (String userInput, String key) {
-        String userOutput = "";
-        //ToLowerCase to not deal with Capitals
-        userInput = userInput.toLowerCase(Locale.ROOT); // All to Lowercase
-        for(int i=0; i<userInput.length(); i++){
-            //Move letter and add it to the Secret text
-            //TODO: Spaces
-            char next = userInput.charAt(i);
-            userOutput = userOutput + Helper.Shift(next, key.length());
+        int iKey = 0;
+        char[] cKey = key.toCharArray();
+        char[] c_userOutput = userInput.toCharArray();
+        //Handle Letters in key
+        try {
+            iKey = Integer.parseInt(key);
+            Logger.Log("Cipher/Caesar", "Converted Number | iKey: " + iKey);
+        } catch (Exception e) {
+            for (char item : cKey) {
+                iKey += item;
+            }
+            Logger.Log("Cipher/Caesar", "Converted Letters | iKey: " + iKey);
         }
-        System.out.println("Caesar cipher Encoded!");
-        return userOutput;
+        for (int i = 0; i < c_userOutput.length; i++) {
+            if (Helper.Contains(Helper.specials, c_userOutput[i]) | Helper.Contains(Helper.numbers, c_userOutput[i])) continue;
+            c_userOutput[i] = Helper.ShiftLetter(c_userOutput[i], iKey);
+        }
+        Logger.Log("Cipher/Caesar", "Encode Result: " + Helper.getString(c_userOutput));
+        return Helper.getString(c_userOutput);
     }
 
     //Decodes the userInput and returns the Decoded Text
     public String Decode (String userInput, String key) {
-        String userOutput = "";
-        userInput = userInput.toLowerCase();
-        //TODO: Spaces
-        for(int i=0; i<userInput.length(); i++){
-            char next = userInput.charAt(i);
-            userOutput = userOutput + Helper.Shift(next, 26-key.length());
+        int iKey = 0;
+        char[] cKey = key.toCharArray();
+        char[] c_userOutput = userInput.toCharArray();
+        //Handle Letters in key
+        try {
+            iKey = Integer.parseInt(key);
+            Logger.Log("Cipher/Caesar", "Converted Number | iKey: " + iKey);
+        } catch (Exception e) {
+            for (char item : cKey) {
+                iKey += item;
+            }
+            Logger.Log("Cipher/Caesar", "Converted Letters | iKey: " + iKey);
         }
-        return userOutput;
+        for (int i = 0; i < c_userOutput.length; i++) {
+            if (Helper.Contains(Helper.specials, c_userOutput[i]) | Helper.Contains(Helper.numbers, c_userOutput[i])) continue;
+            c_userOutput[i] = Helper.ShiftLetter(c_userOutput[i], -iKey);
+        }
+        Logger.Log("Cipher/Caesar", "Decode Result: " + Helper.getString(c_userOutput));
+        return Helper.getString(c_userOutput);
     }
 
 }
