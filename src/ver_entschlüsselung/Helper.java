@@ -12,13 +12,14 @@ public class Helper {
     public static final char[] alphabet_uc = new char[] {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J','K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     //Moves the Char on a given Int value
     public static char ShiftLetter(char letter, int shift){
-        if(letter>=first_lc && letter <=last_lc){
-            letter += shift;
-            //After z comes a
-            if (letter > last_lc) letter -= 26;
-        } else if(letter>=first_uc && letter <=last_uc) {
-            letter += shift;
-            if (letter > last_uc) letter -= 26;
+        shift %= alphabet_lc.length;
+        if(Contains(alphabet_lc, letter)){
+            //if the calculated shift value exeeds index
+            int tmp = (getIndex(letter) + shift) % alphabet_lc.length;
+            // or is minus
+            while (tmp < 0)
+                tmp += alphabet_lc.length;
+            letter = getChar(tmp);
         }
         return letter;
     }
@@ -69,7 +70,7 @@ public class Helper {
         else return false;
     }
     //returns a Index of a Letter in a Alphabetic Array form(lower case)
-    public static int getIndex(char val) {
+    public static int getIndexByChar(char val) {
         return (int)val - first_lc;
     }
     //convert a char[] to String
@@ -94,5 +95,17 @@ public class Helper {
     }
     public static char subChar(char val, int shift ) {
         return 0;
+    }
+
+    public static int getIndex(char letter) {
+        for(int i = 0; i < alphabet_lc.length; i++) {
+            if(alphabet_lc[i] == letter) {
+                return i;
+            }
+        }
+        return 0;
+    }
+    public static char getChar(int index) {
+        return alphabet_lc[Math.abs(index) % alphabet_lc.length];
     }
 }
