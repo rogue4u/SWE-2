@@ -1,10 +1,12 @@
 package ver_entschlüsselung;
 
+import jserver.XSendAdapterEN;
+
 public class CaesarCipher extends Cipher {
     public static void main(String[] args) {
         CaesarCipher cipher = new CaesarCipher();
-        Logger.Log("Cipher/Caeser/test", "" + cipher.Encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ.,:;-_#'+*~!§$%&/()=?{[]}", "EinZiehmlichGeilerKey"));
-        Logger.Log("Cipher/Caeser/test", "" + cipher.Decode("yzabcdefghijklmnopqrstuvwx.,:;-_#'+*~!§$%&/()=?{[]}", "EinZiehmlichGeilerKey"));
+        Logger.Log("Cipher/Caeser/test", "" + cipher.Encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ.,:;-_#'+*~!§$%&/()=?{[]}", "EinZiehmlichGeilerKey", null));
+        Logger.Log("Cipher/Caeser/test", "" + cipher.Decode("yzabcdefghijklmnopqrstuvwx.,:;-_#'+*~!§$%&/()=?{[]}", "EinZiehmlichGeilerKey", null));
     }
 
     //Constructor
@@ -13,7 +15,7 @@ public class CaesarCipher extends Cipher {
     }
 
     //encodes the userInput and returns the Encoded Text
-    public String Encode (String userInput, String key) {
+    public String Encode (String userInput, String key, XSendAdapterEN xsend) {
         int iKey = 0;
         //making sure key and User input are lower
         char[] cKey = key.toLowerCase().toCharArray();
@@ -34,11 +36,12 @@ public class CaesarCipher extends Cipher {
             c_userOutput[i] = Helper.ShiftLetter(c_userOutput[i], iKey);
         }
         Logger.Log("Cipher/Caesar", "Encode Result: " + Helper.getString(c_userOutput));
+
         return Helper.getString(c_userOutput);
     }
 
     //Decodes the userInput and returns the Decoded Text
-    public String Decode (String userInput, String key) {
+    public String Decode (String userInput, String key, XSendAdapterEN xsend) {
         int iKey = 0;
         char[] cKey = key.toLowerCase().toCharArray();
         char[] c_userOutput = userInput.toLowerCase().toCharArray();

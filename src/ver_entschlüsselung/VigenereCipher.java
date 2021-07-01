@@ -1,5 +1,7 @@
 package ver_entschlüsselung;
 
+import jserver.XSendAdapterEN;
+
 import java.util.Locale;
 
 public class VigenereCipher extends Cipher {
@@ -18,7 +20,7 @@ public class VigenereCipher extends Cipher {
       *  table = FillTable(new char[26][26], inertialShift);
     }*/
 
-    public String Encode (String input, String key) {
+    public String Encode (String input, String key, XSendAdapterEN xsend) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Encoded!");
         char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();
         char[] _uKey = key.toCharArray();
@@ -32,7 +34,7 @@ public class VigenereCipher extends Cipher {
         }
         return Helper.getString(_uInput);
     }
-    public String Decode (String input, String key) {
+    public String Decode (String input, String key, XSendAdapterEN xsend) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Decoded!");
         //TODO: Vigenere Decode
         char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();

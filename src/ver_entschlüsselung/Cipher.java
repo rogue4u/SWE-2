@@ -1,5 +1,7 @@
 package ver_entschlüsselung;
 
+import jserver.XSendAdapterEN;
+
 abstract class Cipher {
 
     private String name;
@@ -18,6 +20,6 @@ abstract class Cipher {
         return version;
     }
 
-    abstract String Encode (String userInput, String key);
-    abstract String Decode (String userInput, String key);
+    abstract String Encode (String userInput, String key, XSendAdapterEN xsend);
+    abstract String Decode (String userInput, String key, XSendAdapterEN xsend);
 }

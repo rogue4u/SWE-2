@@ -1,4 +1,6 @@
 package ver_entschlüsselung;
+import jserver.Board;
+import jserver.XSendAdapterEN;
 
 //Helper Class to deal with certain things
 public class Helper {
@@ -107,5 +109,16 @@ public class Helper {
     }
     public static char getChar(int index) {
         return alphabet_lc[Math.abs(index) % alphabet_lc.length];
+    }
+
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[] content) {
+        if (xsend != null)
+            return false;
+        return true;
+    }
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] content) {
+        if (xsend != null)
+            return false;
+        return true;
     }
 }
