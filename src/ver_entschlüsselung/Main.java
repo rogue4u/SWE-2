@@ -5,13 +5,10 @@ import jserver.XSendAdapterEN;
 import javax.swing.*;
 import plotter.Graphic;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class Main {
 
-    private XSendAdapterEN xsend = new XSendAdapterEN();
+    private final XSendAdapterEN xsend = new XSendAdapterEN();
     private Graphic graphic;
 
     //GUI

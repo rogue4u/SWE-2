@@ -99,6 +99,13 @@ public class Helper {
         return 0;
     }
 
+    public static char[] copy(char[] arr) {
+        char[] out = new char[arr.length];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = arr[i];
+        }
+        return out;
+    }
     public static int getIndex(char letter) {
         for(int i = 0; i < alphabet_lc.length; i++) {
             if(alphabet_lc[i] == letter) {
@@ -111,33 +118,55 @@ public class Helper {
         return alphabet_lc[Math.abs(index) % alphabet_lc.length];
     }
     //TODO: Highlight
+    //Painter for arrays
     public static Boolean BoardPainter(XSendAdapterEN xsend, char[] content_userIn, char[] content_userOut) {
-        int max = 26;
-        int lines = 2;
-        if (xsend != null)
-            return false;
+        if (xsend == null) return false;
+        else if (content_userIn.length != content_userOut.length) return false;
+        Logger.Log("Helper/BoardPainter", "ping");
 
-        //set dynamic size
-        xsend.size(content.length,lines);
-        int currLine = 0;
-        intern_printLine(0, content_userIn, xsend);
-        intern_printLine(1, content_userOut, xsend);
+        int max = 26; //max char in one Line
+        int currChar = 0; // as index
+        int lines = 2; // min lines
 
+        lines = (content_userIn.length+26) / (26);
+        int lineDefault = lines;
+
+        Logger.Log("Helper/BoardPainter/content_userIn.length", ""+lines);
+
+        xsend.size(max, lines*2);
+
+        Logger.Log("Helper/BoardPainter", "Lines: "+lines);
+        //Paint first lines
+        for (int i = 0; i < content_userIn.length; i++) {
+            if ((currChar+1) >= max) { lines--; currChar = 0; }
+            if ((lines) <= 0) break;
+
+            xsend.text2(currChar, lines-1, ""+content_userIn[i]);
+            currChar++;
+        }
+        currChar = 0;
+        lines = lineDefault;
+        //paint 2nd lines
+        for (int i = 0; i < content_userOut.length; i++) {
+            if ((currChar+1) >= max) { lines--; currChar = 0; }
+            if ((lines) <= 0) break;
+
+            xsend.text2(currChar, lines+lineDefault-1, ""+content_userOut[i]);
+            currChar++;
+        }
         return true;
     }
-    private static void intern_printLine(int line, char[] content, XSendAdapterEN xsend) {
-        //TODO: Word Wrapping
-        for (int x = 0; x < content.length; x++)
-            xsend.text2(x, line, ""+content[x]);
-    }
     //TODO: Highlight
-    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] table) {
+    //painter for tables
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] table, char[] userInput, char[] userOutput) {
         if (xsend != null)
             return false;
+        /*
         xsend.size(table.length, table[0].length);
         for (int x = 0; x < table.length; x++)
             for (int y = 0; y < table[x].length; y++)
                 xsend.text2(x,y,""+table[x][y]);
+         */
         return true;
     }
 }

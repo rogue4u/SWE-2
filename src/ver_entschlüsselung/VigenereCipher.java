@@ -22,32 +22,34 @@ public class VigenereCipher extends Cipher {
 
     public String Encode (String input, String key, XSendAdapterEN xsend) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Encoded!");
-        char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uOutput = input.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uInput = _uOutput;
         char[] _uKey = key.toCharArray();
         int step = 0;
 
-        for (int i = 0; i < _uInput.length; i++) {
+        for (int i = 0; i < _uOutput.length; i++) {
             //ignore some chars
-            if (Helper.Contains(Helper.specials, _uInput[i])) continue;
+            if (Helper.Contains(Helper.specials, _uOutput[i])) continue;
             if (step == _uKey.length) step = 0;
-            _uInput[i] = getChar(_uInput[i],_uKey[step++] , false);
+            _uOutput[i] = getChar(_uOutput[i],_uKey[step++] , false);
         }
-        Helper.BoardPainter(xsend, table);
-        return Helper.getString(_uInput);
+        Helper.BoardPainter(xsend, table, _uInput, _uOutput);
+        return Helper.getString(_uOutput);
     }
     public String Decode (String input, String key, XSendAdapterEN xsend) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Decoded!");
         //TODO: Vigenere Decode
-        char[] _uInput = input.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uOutput = input.toLowerCase(Locale.ROOT).toCharArray();
+        char[] _uInput = _uOutput;
         char[] _uKey = key.toCharArray();
         int step = 0;
-        for (int i = 0; i < _uInput.length; i++) {
-            if (Helper.Contains(Helper.specials, _uInput[i])) continue;
+        for (int i = 0; i < _uOutput.length; i++) {
+            if (Helper.Contains(Helper.specials, _uOutput[i])) continue;
             if (step == _uKey.length) step = 0;
-            _uInput[i] = getChar(_uInput[i],_uKey[step++] , true);
+            _uOutput[i] = getChar(_uOutput[i],_uKey[step++] , true);
         }
-        Helper.BoardPainter(xsend, table);
-        return Helper.getString(_uInput);
+        Helper.BoardPainter(xsend, table, _uInput, _uOutput);
+        return Helper.getString(_uOutput);
     }
 
 
