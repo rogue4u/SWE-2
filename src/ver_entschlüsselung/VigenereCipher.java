@@ -32,6 +32,7 @@ public class VigenereCipher extends Cipher {
             if (step == _uKey.length) step = 0;
             _uInput[i] = getChar(_uInput[i],_uKey[step++] , false);
         }
+        Helper.BoardPainter(xsend, table);
         return Helper.getString(_uInput);
     }
     public String Decode (String input, String key, XSendAdapterEN xsend) {
@@ -45,6 +46,7 @@ public class VigenereCipher extends Cipher {
             if (step == _uKey.length) step = 0;
             _uInput[i] = getChar(_uInput[i],_uKey[step++] , true);
         }
+        Helper.BoardPainter(xsend, table);
         return Helper.getString(_uInput);
     }
 

@@ -36,7 +36,7 @@ public class CaesarCipher extends Cipher {
             c_userOutput[i] = Helper.ShiftLetter(c_userOutput[i], iKey);
         }
         Logger.Log("Cipher/Caesar", "Encode Result: " + Helper.getString(c_userOutput));
-
+        Helper.BoardPainter(xsend, c_userOutput);
         return Helper.getString(c_userOutput);
     }
 
@@ -60,6 +60,7 @@ public class CaesarCipher extends Cipher {
             c_userOutput[i] = Helper.ShiftLetter(c_userOutput[i], -iKey);
         }
         Logger.Log("Cipher/Caesar", "Decode Result: " + Helper.getString(c_userOutput));
+        Helper.BoardPainter(xsend, c_userOutput);
         return Helper.getString(c_userOutput);
     }
 

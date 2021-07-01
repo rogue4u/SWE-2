@@ -110,15 +110,34 @@ public class Helper {
     public static char getChar(int index) {
         return alphabet_lc[Math.abs(index) % alphabet_lc.length];
     }
-
-    public static Boolean BoardPainter(XSendAdapterEN xsend, char[] content) {
+    //TODO: Highlight
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[] content_userIn, char[] content_userOut) {
+        int max = 26;
+        int lines = 2;
         if (xsend != null)
             return false;
+
+        //set dynamic size
+        xsend.size(content.length,lines);
+        int currLine = 0;
+        intern_printLine(0, content_userIn, xsend);
+        intern_printLine(1, content_userOut, xsend);
+
         return true;
     }
-    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] content) {
+    private static void intern_printLine(int line, char[] content, XSendAdapterEN xsend) {
+        //TODO: Word Wrapping
+        for (int x = 0; x < content.length; x++)
+            xsend.text2(x, line, ""+content[x]);
+    }
+    //TODO: Highlight
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] table) {
         if (xsend != null)
             return false;
+        xsend.size(table.length, table[0].length);
+        for (int x = 0; x < table.length; x++)
+            for (int y = 0; y < table[x].length; y++)
+                xsend.text2(x,y,""+table[x][y]);
         return true;
     }
 }
