@@ -177,7 +177,7 @@ public class Helper {
         for (int x = 0; x < table.length; x++) {
             for (int y = 0; y < table[0].length; y++) {
                 int loc_x = x+1;
-                int loc_y = 25-y; //reverse the y axis to represent the table the correct way
+                int loc_y = Helper.alphabet_uc.length-1-y; //reverse the y axis to represent the table the correct way
                 xsend.text2(loc_x, loc_y, "" + table[x][y]);
             }
         }
