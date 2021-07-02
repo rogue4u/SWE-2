@@ -33,14 +33,14 @@ public class VigenereCipher extends Cipher {
             if (step == _uKey.length) step = 0;
             _uOutput[i] = getChar(_uOutput[i],_uKey[step++] , false);
         }
-        Helper.BoardPainter(xsend, table, _uInput, _uOutput);
+        Helper.BoardPainter(xsend, table, _uInput, _uOutput, _uKey);
         return Helper.getString(_uOutput);
     }
     public String Decode (String input, String key, XSendAdapterEN xsend) {
         Logger.Log("Cipher/Vigenere", "Vigenere cipher Decoded!");
         //TODO: Vigenere Decode
         char[] _uOutput = input.toLowerCase(Locale.ROOT).toCharArray();
-        char[] _uInput = _uOutput;
+        char[] _uInput = Helper.copy(_uOutput);
         char[] _uKey = key.toCharArray();
         int step = 0;
         for (int i = 0; i < _uOutput.length; i++) {
@@ -48,11 +48,9 @@ public class VigenereCipher extends Cipher {
             if (step == _uKey.length) step = 0;
             _uOutput[i] = getChar(_uOutput[i],_uKey[step++] , true);
         }
-        Helper.BoardPainter(xsend, table, _uInput, _uOutput);
+        Helper.BoardPainter(xsend, table, _uInput, _uOutput, _uKey);
         return Helper.getString(_uOutput);
     }
-
-
 
     //Fill the Vigenere table with chars
     private char[][] FillTable(char[][] table, int inertialShift) {

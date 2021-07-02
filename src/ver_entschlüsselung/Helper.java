@@ -1,6 +1,10 @@
 package ver_entschlüsselung;
 import jserver.Board;
 import jserver.XSendAdapterEN;
+import plotter.Sleep;
+
+import java.sql.Time;
+import java.time.LocalDateTime;
 
 //Helper Class to deal with certain things
 public class Helper {
@@ -158,15 +162,25 @@ public class Helper {
     }
     //TODO: Highlight
     //painter for tables
-    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] table, char[] userInput, char[] userOutput) {
-        if (xsend != null)
+    public static Boolean BoardPainter(XSendAdapterEN xsend, char[][] table, char[] userInput, char[] userOutput, char[] key) {
+        if (xsend == null)
             return false;
-        /*
-        xsend.size(table.length, table[0].length);
-        for (int x = 0; x < table.length; x++)
-            for (int y = 0; y < table[x].length; y++)
-                xsend.text2(x,y,""+table[x][y]);
-         */
+        //TODO: Coloring
+        xsend.clear();
+        xsend.size(table.length+1, table[0].length+1);
+
+        for (int i = 0; i < Helper.alphabet_uc.length; i++) {
+            xsend.text2(i+1, 26, ""+Helper.alphabet_uc[i]);
+            xsend.text2(0, i, ""+Helper.alphabet_uc[25-i]);
+        }
+
+        for (int x = 0; x < table.length; x++) {
+            for (int y = 0; y < table[0].length; y++) {
+                int loc_x = x+1;
+                int loc_y = 25-y; //reverse the y axis to represent the table the correct way
+                xsend.text2(loc_x, loc_y, "" + table[x][y]);
+            }
+        }
         return true;
     }
 }
