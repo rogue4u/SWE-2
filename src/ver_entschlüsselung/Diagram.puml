@@ -1,0 +1,131 @@
+@startuml
+
+!define LIGHTORANGE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+class Main {
+    board
+    buttonDecode
+    buttonEncode
+    caesar
+    comboBoxSelection
+    graphic
+    gui
+    item
+    main
+    methodSelection
+    settings
+    textAreaTextInput
+    textAreaTextOutput
+    textFieldKeyInput
+    vigenere
+    xsend
+
+    buttonActionListener()
+    createBoard()
+    createGui()
+    main()
+    start()
+}
+
+
+class Cipher {
+    name
+    version
+
+    decode()
+    encode()
+    getname()
+    getVersion()
+}
+
+class CaesarCipher{
+    _uInput
+    _uOutput
+    cKey
+    i
+    iKey
+    item
+
+    Decode()
+    Encode()
+}
+
+class VigenereCipher {
+    _uInput
+    _uKey
+    _uOutput
+    current
+    i
+    step
+    table
+    x
+    y
+
+    Decode()
+    Encode()
+    FillTable()
+    getChar()
+}
+
+class Logger {
+    errorAccrued
+    errors
+    out
+
+    inIt()
+    log()
+}
+
+class Helper {
+    _arr
+    _val
+    alphabet_lc
+    alphabet_uc
+    checkVal
+    currChar
+    first_lc
+    first_uc
+    i
+    item
+    items
+    last_lc
+    last_uc
+    lineDefault
+    lines
+    loc_x
+    loc_y
+    max
+    numbers
+    out
+    result
+    specials
+    tmp
+    x
+    y
+
+    BoardPainter()
+    BoardPainter()
+    Contains()
+    Contains()
+    ExistOf()
+    ExistOfNot()
+    PrintTable()
+    ShiftLetter()
+    addChar()
+    copy()
+    getChar()
+    getCharByIndex()
+    getIndex()
+    getIndexByChar()
+    getIndexOfElement()
+    getString()
+    subChar()
+}
+
+Cipher <|-- CaesarCipher
+Cipher <|-- VigenereCipher
+
+
+
+@enduml
