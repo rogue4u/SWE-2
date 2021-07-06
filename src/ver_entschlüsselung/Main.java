@@ -11,7 +11,7 @@ public class Main {
     private final XSendAdapterEN xsend = new XSendAdapterEN();
     private Graphic graphic;
 
-    //GUI
+    //GUI Elemente erstellen
     String[] methodSelection = {"Caesar cipher", "Vigenère cipher"};
     JComboBox comboBoxSelection = new JComboBox(methodSelection);
     JTextArea textAreaTextInput = new JTextArea("Text Input");
@@ -20,6 +20,7 @@ public class Main {
     JButton buttonEncode = new JButton("Encode");
     JButton buttonDecode = new JButton("Decode");
 
+    //Main Methode - start des Programmes
     public static void main(String[] args) {
         //TODO: OnExit event
         Main main = new Main();
@@ -30,11 +31,13 @@ public class Main {
         }
     }
 
+    //Startet das Board + Actionlistener
     private void start(){
         createBoard();
         buttonActionListener();
     }
 
+    //Erstellt das BOS - Board + Initial Größe
     private void createBoard() {
         Board board = xsend.getBoard();
         graphic = board.getGraphic();
@@ -44,10 +47,14 @@ public class Main {
         createGui();
     }
 
+    //Erstellt das GUI Element neben dem BOS - Board
     public void createGui (){
+
+        //Erstellt Vertikale Box
         Box settings = Box.createVerticalBox();
         Box gui = Box.createVerticalBox();
 
+        //Erstellt Auswahlbox mit Wahl der Verchlüsslung
         settings.add(comboBoxSelection);
         settings.add(Box.createVerticalStrut(10));
 
@@ -59,13 +66,15 @@ public class Main {
         textAreaTextInput.setLineWrap(true);
         textAreaTextInput.setWrapStyleWord(true);
 
+        //Textfeld zum Eingeben von einem Text
         textFieldKeyInput.setMaximumSize( new Dimension(250, 50));
         settings.add(textFieldKeyInput);
         settings.add(Box.createVerticalStrut(10));
 
-        //textAreaTextOutput.setMaximumSize( new Dimension(250, 0));
+        //Textfeld als Ausgabe für einen Text
         settings.add(textAreaTextOutput);
         settings.add(Box.createVerticalStrut(10));
+
         //Zeilenumbrüche aktviert + Nur nach ganzen Wörtern
         textAreaTextOutput.setLineWrap(true);
         textAreaTextOutput.setWrapStyleWord(true);
@@ -74,6 +83,7 @@ public class Main {
         settings.add(buttonEncode);
         settings.add(buttonDecode);
 
+        //GUI an Graphic anhängen
         gui.add(settings);
         graphic.addEastComponent(gui);
     }
