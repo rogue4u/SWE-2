@@ -4,12 +4,12 @@ import jserver.XSendAdapterEN;
 
 public class CaesarCipher extends Cipher {
 
-    //Constructor
+    //Konstruktor
     public CaesarCipher() {
         super("CaesarCipher", 1);
     }
 
-    //encodes the userInput and returns the Encoded Text
+    //Verschlüsselt den Klartext
     public String Encode (String userInput, String key, XSendAdapterEN xsend) {
         int iKey = 0;
         //making sure key and User input are lower
@@ -36,7 +36,7 @@ public class CaesarCipher extends Cipher {
         return Helper.getString(_uInput);
     }
 
-    //Decodes the userInput and returns the Decoded Text
+    //Entschlüsselt ein Text
     public String Decode (String userInput, String key, XSendAdapterEN xsend) {
         int iKey = 0;
         char[] cKey = key.toLowerCase().toCharArray();
@@ -60,5 +60,4 @@ public class CaesarCipher extends Cipher {
         Helper.BoardPainter(xsend, _uInput, _uOutput);
         return Helper.getString(_uInput);
     }
-
 }
