@@ -10,8 +10,8 @@ import plotter.Graphic;
 import javax.swing.*;
 
 public class Player {
-	private String firstname;
-	private String lastname;
+	private final String firstname;
+	private final String lastname;
 	private int right;
 	private int wrong;
 	

@@ -24,10 +24,10 @@ import java.awt.event.ActionListener;
 
 public class Quiz implements BoardClickListener {
 
-    private XSendAdapterEN xsend = new XSendAdapterEN();
-    private int size = 30;
+    private final XSendAdapterEN xsend = new XSendAdapterEN();
+    private final int size = 30;
     private int pos = 0;
-    private Questioner questioner = new Questioner();
+    private final Questioner questioner = new Questioner();
     private Player player;
 
     //GUI erweitern
@@ -141,8 +141,6 @@ public class Quiz implements BoardClickListener {
         }
 
             // Alte Status anzeige.
-            //String message = String.format("%s %.1f%% richtige Antworten", player.getName(), player.getCorrectPercent());
-            //xsend.statusText(message);
 
         updateBoardPlayerStats();
     }

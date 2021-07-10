@@ -5,8 +5,8 @@ import jserver.XSendAdapterEN;
 abstract class Cipher {
 
     //Variablen erstellen
-    private String name;
-    private int version;
+    private final String name;
+    private final int version;
 
     //Konstruktor
     public Cipher(String name, int version) {

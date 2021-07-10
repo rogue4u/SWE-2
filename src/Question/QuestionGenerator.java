@@ -14,10 +14,10 @@ import java.util.Random;
  *
  */
 public class QuestionGenerator {
-    static private Random random = new Random();
+    static private final Random random = new Random();
     static private int anzahl;
-    static private int maxAdd = 20;
-    static private int maxMult = 10;
+    static private final int maxAdd = 20;
+    static private final int maxMult = 10;
 
     public static int getAnzahl() {
         return anzahl;

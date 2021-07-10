@@ -29,15 +29,15 @@ class BoardPainter implements BoardClickListener {
     private Board board;
     private Graphic graphic;
     private XSendAdapter xsend;
-    private int farben[] = { XSendAdapter.GREEN, XSendAdapter.YELLOW, XSendAdapter.RED, XSendAdapter.BLACK,
+    private final int[] farben = { XSendAdapter.GREEN, XSendAdapter.YELLOW, XSendAdapter.RED, XSendAdapter.BLACK,
             XSendAdapter.BLUE };
-    private int groesse = 12;
+    private final int groesse = 12;
     private int zeichenFarbe = XSendAdapter.BLUE;
-    private int startFarbe = XSendAdapter.ORANGE;
-    private JButton faerbeButton = new JButton("F�rben");
-    private JButton loescheButton = new JButton("Reset");
-    private JButton zufallButton = new JButton("Zufall");
-    private JTextField indexField = new JTextField(12);
+    private final int startFarbe = XSendAdapter.ORANGE;
+    private final JButton faerbeButton = new JButton("F�rben");
+    private final JButton loescheButton = new JButton("Reset");
+    private final JButton zufallButton = new JButton("Zufall");
+    private final JTextField indexField = new JTextField(12);
 
     public static void main(String[] args) {
         BoardPainter e = new BoardPainter();

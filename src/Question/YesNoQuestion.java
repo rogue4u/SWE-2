@@ -14,11 +14,7 @@ public class YesNoQuestion extends Question {
         int ret = JOptionPane.showConfirmDialog(null, question);
         if (answer & ret == JOptionPane.OK_OPTION) {
             return true;
-        } else if (!answer & ret == JOptionPane.NO_OPTION) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return !answer & ret == JOptionPane.NO_OPTION;
     }
 
 }

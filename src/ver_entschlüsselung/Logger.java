@@ -8,16 +8,12 @@ import java.util.*;
 //Class for Easy Logging
 public class Logger {
     //TODO: file writing
-    //static File logFile;
-    //static FileWriter logFileWriter;
     static protected boolean errorAccrued;
     static List<Exception> errors = new ArrayList<>();
 
     //Initialize Logger
     public static void INIT() {
         try {
-            //logFile = new File("Cipher.log");
-            //logFileWriter = new FileWriter(logFile);
             errorAccrued = false;
         } catch (Exception e) {
             errorAccrued = true;
@@ -28,13 +24,6 @@ public class Logger {
     public static void Log(String from, String msg) {
         //TODO: Fix "No log Problem"
         String out = "[" + from + "] " + msg;
-        /*if (logFile.canWrite() & logFile.exists() & !errorAccrued) {
-            try {
-                logFileWriter.write("["+ LocalTime.now() + "]" + out);
-            } catch (IOException e) {
-                errors.add(e);
-            }
-        }*/
         System.out.println(out);
     }
     //TODO: More Functions

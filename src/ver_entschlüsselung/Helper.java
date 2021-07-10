@@ -62,8 +62,7 @@ public class Helper {
                 if (_arr == _val) checkVal++;
             }
         }
-        if (checkVal == 0) return true;
-        else return false;
+        return checkVal == 0;
     }
     public static boolean ExistOfNot(char[] arr, char[] val) {
         int checkVal = 0;
@@ -72,8 +71,7 @@ public class Helper {
                 if (_arr != _val) checkVal++;
             }
         }
-        if (checkVal == 0) return true;
-        else return false;
+        return checkVal == 0;
     }
     //returns a Index of a Letter in a Alphabetic Array form(lower case)
     public static int getIndexByChar(char val) {
@@ -81,11 +79,11 @@ public class Helper {
     }
     //convert a char[] to String
     public static String getString(char[] arr) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < arr.length; i++) {
-            result += arr[i];
+            result.append(arr[i]);
         }
-        return result;
+        return result.toString();
     }
     //TODO: Byte shifting functions
     //returns index of a val in a array, is -1 if not found, basically a find function
@@ -97,17 +95,15 @@ public class Helper {
         return -1;
     }
     public static char addChar(char val, int shift ) {
-        return 0;
+        return (char)(val + shift);
     }
     public static char subChar(char val, int shift ) {
-        return 0;
+        return (char)(val - shift);
     }
 
     public static char[] copy(char[] arr) {
         char[] out = new char[arr.length];
-        for (int i = 0; i < out.length; i++) {
-            out[i] = arr[i];
-        }
+        System.arraycopy(arr, 0, out, 0, out.length);
         return out;
     }
     public static int getIndex(char letter) {
@@ -130,7 +126,7 @@ public class Helper {
 
         int max = 26; //max char in one Line
         int currChar = 0; // as index
-        int lines = 2; // min lines
+        int lines; // min lines
 
         lines = (content_userIn.length+26) / (26);
         int lineDefault = lines;

@@ -12,8 +12,7 @@ public class Main {
     private Graphic graphic;
 
     //GUI Elemente erstellen
-    String[] methodSelection = {"Caesar cipher", "Vigenère cipher"};
-    JComboBox comboBoxSelection = new JComboBox(methodSelection);
+    JComboBox comboBoxSelection = new JComboBox(new String[] {"Caesar cipher", "Vigenère cipher"});
     JTextArea textAreaTextInput = new JTextArea("Text Input");
     JTextField textFieldKeyInput = new JTextField("Key");
     JTextArea textAreaTextOutput = new JTextArea("Text Output");
@@ -90,21 +89,21 @@ public class Main {
 
     private void buttonActionListener() {
         buttonEncode.addActionListener(e -> {
-            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+            if (comboBoxSelection.getSelectedItem().toString().equals("Caesar cipher")){
                 CaesarCipher caesar = new CaesarCipher();
                 textAreaTextOutput.setText(caesar.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText(), xsend));
 
-            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+            } else if(comboBoxSelection.getSelectedItem().toString().equals("Vigenère cipher")) {
                 VigenereCipher vigenere = new VigenereCipher();
                 textAreaTextOutput.setText(vigenere.Encode(textAreaTextInput.getText(), textFieldKeyInput.getText(), xsend));
             }
         });
 
         buttonDecode.addActionListener(e -> {
-            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher") {
+            if (comboBoxSelection.getSelectedItem().toString().equals("Caesar cipher")) {
                 CaesarCipher caesar = new CaesarCipher();
                 textAreaTextOutput.setText(caesar.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText(), xsend));
-            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+            } else if(comboBoxSelection.getSelectedItem().toString().equals("Vigenère cipher")) {
                 VigenereCipher vigenere = new VigenereCipher();
                 textAreaTextOutput.setText(vigenere.Decode(textAreaTextInput.getText(), textFieldKeyInput.getText(), xsend));
             }
@@ -113,9 +112,9 @@ public class Main {
         //BOS nach BoxSelection anpassen
         comboBoxSelection.addActionListener(e -> {
             Logger.Log("Main/comboBoxSelection/actionPerformed", "Changed to " + comboBoxSelection.getSelectedItem().toString());
-            if (comboBoxSelection.getSelectedItem().toString() == "Caesar cipher"){
+            if (comboBoxSelection.getSelectedItem().toString().equals("Caesar cipher")){
                 xsend.size(27,2);
-            } else if(comboBoxSelection.getSelectedItem().toString() == "Vigenère cipher") {
+            } else if(comboBoxSelection.getSelectedItem().toString().equals("Vigenère cipher")) {
                 xsend.size(27,27);
             }
         });
