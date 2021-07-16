@@ -90,7 +90,7 @@ public class Quiz implements BoardClickListener {
 			public void actionPerformed(ActionEvent e) {
 
 			    player = new Player(vornameLabel.getText(),nachnameLabel.getText());
-				System.out.println(player.toString());
+				System.out.println(player);
 				System.out.println("Ok-button Funktioniert!");
 			}
 		});
