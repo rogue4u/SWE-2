@@ -10,9 +10,6 @@ public class RandomWalker extends Walker {
 
     public void geheSchritt(){
 
-        super.loesche(xSendAdapter);
-
-
     }
 
     public static int getRandomInt () {
